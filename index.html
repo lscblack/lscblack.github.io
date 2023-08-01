@@ -32,7 +32,7 @@
   [endif]-->
   <style type="text/css">
      .navbar-brand{
-      padding: 12px;
+      width: fit-content;
       font-size: 30px;
       color: white;
       display: flex;
@@ -74,6 +74,162 @@
       .team-desc h5{
         font-size: 15px;
       }
+
+      /* popup */
+
+.popup{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 100%;
+    max-width: 1600px;
+    height: 100vh;
+    max-height: 800px;
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1250;
+    overflow: hidden;
+    transition: 1s;
+    opacity: 0;
+}
+
+.popup.active{
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+.popup.active .close-btn,
+.popup.active .image-name,
+.popup.active .index,
+.popup.active .large-image,
+.popup.active .arrow-btn{
+    opacity: 1;
+    transition: opacity .5s;
+    transition-delay: 1s;
+}
+.image-name{
+  background: red;
+  padding: 12px;
+  width: fit-content;
+  color: white;
+  margin: 4px auto;
+  font-size: 18px;
+  font-weight: bold;
+  opacity: 1;
+}
+.top-bar{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background: #000;
+    color: #fff;
+    text-align: center;
+    line-height: 50px;
+    font-weight: 300;
+}
+
+.image-name{
+    opacity: 0;
+}
+
+.close-btn{
+    opacity: 0;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: white;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    border-radius: 50%;
+    background: #f00;
+    cursor: pointer;
+}
+
+.arrow-btn{
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 10px;
+    border-radius: 50%;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.left-arrow{
+    left: 10px;
+}
+
+.right-arrow{
+    right: 10px;
+    background: rgba(0, 0, 0, 0.4);
+    transform: translateY(-50%) rotate(180deg);
+}
+
+.arrow-btn:hover{
+    background: rgba(0, 0, 0, 1);
+}
+
+.index{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-size: 80px;
+    font-weight: 100;
+    color: rgba(255, 255, 255, 0.4);
+    opacity: 0;
+}
+
+.large-image{
+    margin-top: 5%;
+    width: 100%;
+    height: 80%;
+    object-fit: contain;
+    opacity: 0;
+}
+iframe{
+  width:560px; 
+  height:315px; 
+}
+  #bs-example-navbar-collapse-1 .scroll i{
+    font-size: 20px;
+    width: 30px;
+  }
+@media  screen and (max-width: 700px) {
+ iframe{
+  width: 100%;
+ }
+ #bs-example-navbar-collapse-1{
+  background: rgba(0, 0, 0, 1.0);
+  height: fit-content;
+  max-height: fit-content;
+ }
+  #bs-example-navbar-collapse-1 .scroll{
+padding: 15px;
+
+ }
+  #bs-example-navbar-collapse-1 .scroll i{
+    padding: 4px;
+    font-size: 20px;
+    width: 30px;
+  }
+  #bs-example-navbar-collapse-1 .scroll:hover{
+   background:  rgba(0, 0, 0, 0.1);
+ }
+   #bs-example-navbar-collapse-1  .active {
+  background: rgba(0, 0, 0, 0.1);
+}
+}
   </style>
 </head>
 <body data-spy="scroll" data-target=".navbar-default" data-offset="100">
@@ -95,13 +251,13 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li class="active"><a class="scroll" href="#menu">Home</a></li>
-            <li><a class="scroll" href="#service">Challenges</a></li>
-            <li><a class="scroll" href="#blog">About</a></li>
-            <li><a class="scroll" href="#portfolio">Gallery</a></li>
-            <li><a class="scroll" href="#features">Videos</a></li>
-            <li><a class="scroll" href="#team">THINK TANK</a></li>
-            <li><a class="scroll" href="#footer-down">Follow Us</a></li>
+            <li class="active"><a class="scroll" href="#menu"> <i class="fa fa-home"></i> Home</a></li>
+            <li><a class="scroll" href="#service"> <i class="fa fa-question-circle"></i> Challenges</a></li>
+            <li><a class="scroll" href="#blog"> <i class="fa fa-info-circle"></i> About</a></li>
+            <li><a class="scroll" href="#portfolio"> <i class="fa fa-images"></i> Gallery</a></li>
+            <li><a class="scroll" href="#features"> <i class="fa fa-video"></i> Videos</a></li>
+            <li><a class="scroll" href="#team"> <i class="fa fa-group"></i> Members</a></li>
+            <li><a class="scroll" href="#footer-down"> <i class="fa fa-heart"></i> Media</a></li>
           </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -294,6 +450,20 @@
     </div>
   </div>
 </section>
+    <div class="popup">
+        <!-- top bar -->
+        <div class="top-bar">
+            <p class="image-name">Evolvers</p>
+            <span class="close-btn"><i class="fa fa-times"></i></span>
+        </div>
+        <!-- arrows -->
+        <button class="arrow-btn left-arrow"><img src="images/img/arrow.png" alt=""></button>
+        <button class="arrow-btn right-arrow"><img src="images/img/arrow.png" alt=""></button>
+        <!-- image -->
+        <img src="img/img1.png" class="large-image" alt="">
+        <!-- image-index -->
+        <h1 class="index">1</h1>
+    </div>
 <!--Portfolio-Section-Start-->
 <section id="portfolio">
   <div class="container">
@@ -318,8 +488,8 @@
          <div class="img_big">
          <img class="img-responsive" src="images/img/life.jpeg" alt="">
         </div>
-          <div class="portfolio-info"> <a class="preview" href="images/img/life.jpeg" data-rel="prettyPhoto"><i class="fa fa-plus-circle"></i></a>
-            <h6>Evolvers Life At ALU </h6>
+          <div class="portfolio-info"> <button style="background:none;border: 0;" class="preview image" value="images/img/life.jpeg" data-rel="prettyPhoto"><i class="fa fa-plus-circle"></i></button>
+            <h6 class="image2">Evolvers Life At ALU </h6>
             <p>Unit is power</p>
           </div>
         </div>
@@ -330,8 +500,8 @@
          <div class="img_big">
          <img class="img-responsive" src="images/img/life2.jpeg" alt="">
         </div>
-          <div class="portfolio-info"> <a class="preview" href="images/img/life2.jpeg" data-rel="prettyPhoto"><i class="fa fa-plus-circle"></i></a>
-            <h6>Evolvers Life At ALU </h6>
+          <div class="portfolio-info"> <button style="background:none;border: 0;" class="preview image" value="images/img/life2.jpeg" data-rel="prettyPhoto"><i class="fa fa-plus-circle"></i></button>
+            <h6 class="image2">Evolvers Life At ALU </h6>
             <p>Unit is power</p>
           </div>
         </div>
@@ -341,8 +511,8 @@
          <div class="img_big">
          <img class="img-responsive" src="images/img/help1.jpg" alt="">
         </div>
-          <div class="portfolio-info"> <a class="preview" href="images/img/help1.jpg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></a>
-            <h6>CH-1 Helping</h6>
+          <div class="portfolio-info"> <button style="background:none;border: 0;" class="preview image" value="images/img/help1.jpg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></button>
+            <h6 class="image2">CH-1 Helping</h6>
             <p>In This Challenge We Cleaned The City</p>
           </div>
         </div>
@@ -352,8 +522,8 @@
          <div class="img_big">
          <img class="img-responsive" src="images/img/mtn.jpeg" alt="">
         </div>
-          <div class="portfolio-info"> <a class="preview" href="images/img/mtn.jpeg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></a>
-            <h6>#5 Hunt for Treasure</h6>
+          <div class="portfolio-info"> <button style="background:none;border: 0;" class="preview image" value="images/img/mtn.jpeg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></button>
+            <h6 class="image2">#5 Hunt for Treasure</h6>
             <p>In this challenge we went to interview MTN Agents about the factors that influenced their earnings.</p>
           </div>
         </div>
@@ -363,8 +533,8 @@
          <div class="img_big">
          <img class="img-responsive" src="images/img/mtn2.jpeg" alt="">
         </div>
-          <div class="portfolio-info"> <a class="preview" href="images/img/mtn2.jpeg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></a>
-            <h6>#5 Hunt for Treasure</h6>
+          <div class="portfolio-info"> <button style="background:none;border: 0;" class="preview image" value="images/img/mtn2.jpeg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></button>
+            <h6 class="image2">#5 Hunt for Treasure</h6>
             <p>In this challenge we went to interview MTN Agents about the factors that influenced their earnings.</p>
           </div>
         </div>
@@ -374,8 +544,8 @@
          <div class="img_big">
          <img class="img-responsive" src="images/img/help2.jpg" alt="">
         </div>
-          <div class="portfolio-info"> <a class="preview" href="images/img/help2.jpg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></a>
-            <h6>CH-1 Helping</h6>
+          <div class="portfolio-info"> <button style="background:none;border: 0;" class="preview image" value="images/img/help2.jpg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></button>
+            <h6 class="image2">CH-1 Helping</h6>
             <p>In This Challenge We Cleaned The City</p>
           </div>
         </div>
@@ -385,8 +555,8 @@
          <div class="img_big">
          <img class="img-responsive" src="images/img/ch1.jpeg" alt="">
         </div>
-          <div class="portfolio-info"> <a class="preview" href="images/img/ch1.jpeg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></a>
-            <h6>#1  ALUxpress</h6>
+          <div class="portfolio-info"> <button style="background:none;border: 0;" class="preview image" value="images/img/ch1.jpeg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></button>
+            <h6 class="image2">#1  ALUxpress</h6>
             <p>In this challenge we did a scavenger hunt trying to find different locations around campus</p>
           </div>
         </div>
@@ -396,8 +566,8 @@
          <div class="img_big">
          <img class="img-responsive" src="images/img/mtn3.jpeg" alt="">
         </div>
-          <div class="portfolio-info"> <a class="preview" href="images/img/mtn3.jpeg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></a>
-            <h6>#5 Hunt for Treasure</h6>
+          <div class="portfolio-info"> <button style="background:none;border: 0;" class="preview image" value="images/img/mtn3.jpeg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></button>
+            <h6 class="image2">#5 Hunt for Treasure</h6>
             <p>In this challenge we went to interview MTN Agents about the factors that influenced their earnings.</p>
           </div>
         </div>
@@ -407,8 +577,8 @@
          <div class="img_big">
          <img class="img-responsive" src="images/img/mtn4.jpeg" alt="">
         </div>
-          <div class="portfolio-info"> <a class="preview" href="images/img/mtn4.jpeg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></a>
-            <h6>#5 Hunt for Treasure</h6>
+          <div class="portfolio-info"> <button style="background:none;border: 0;" class="preview image" value="images/img/mtn4.jpeg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></button>
+            <h6 class="image2">#5 Hunt for Treasure</h6>
             <p>In this challenge we went to interview MTN Agents about the factors that influenced their earnings.</p>
           </div>
         </div>
@@ -418,8 +588,8 @@
          <div class="img_big">
          <img class="img-responsive" src="images/img/mtn5.jpeg" alt="">
         </div>
-          <div class="portfolio-info"> <a class="preview" href="images/img/mtn5.jpeg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></a>
-            <h6>#5 Hunt for Treasure</h6>
+          <div class="portfolio-info"> <button style="background:none;border: 0;" class="preview image" value="images/img/mtn5.jpeg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></button>
+            <h6 class="image2">#5 Hunt for Treasure</h6>
             <p>In this challenge we went to interview MTN Agents about the factors that influenced their earnings.</p>
           </div>
         </div>
@@ -429,8 +599,8 @@
          <div class="img_big">
          <img class="img-responsive" src="images/img/mtn6.jpeg" alt="">
         </div>
-          <div class="portfolio-info"> <a class="preview" href="images/img/mtn6.jpeg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></a>
-            <h6>#5 Hunt for Treasure</h6>
+          <div class="portfolio-info"> <button style="background:none;border: 0;" class="preview image" value="images/img/mtn6.jpeg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></button>
+            <h6 class="image2">#5 Hunt for Treasure</h6>
             <p>In this challenge we went to interview MTN Agents about the factors that influenced their earnings.</p>
           </div>
         </div>
@@ -440,8 +610,8 @@
          <div class="img_big">
          <img class="img-responsive" src="images/img/mtn7.jpeg" alt="">
         </div>
-          <div class="portfolio-info"> <a class="preview" href="images/img/mtn7.jpeg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></a>
-            <h6>#5 Hunt for Treasure</h6>
+          <div class="portfolio-info"> <button style="background:none;border: 0;" class="preview image" value="images/img/mtn7.jpeg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></button>
+            <h6 class="image2">#5 Hunt for Treasure</h6>
             <p>In this challenge we went to interview MTN Agents about the factors that influenced their earnings.</p>
           </div>
         </div>
@@ -451,8 +621,8 @@
          <div class="img_big">
          <img class="img-responsive" src="images/img/mtn8.jpeg" alt="">
         </div>
-          <div class="portfolio-info"> <a class="preview" href="images/img/mtn8.jpeg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></a>
-            <h6>#5 Hunt for Treasure</h6>
+          <div class="portfolio-info"> <button style="background:none;border: 0;" class="preview image" value="images/img/mtn8.jpeg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></button>
+            <h6 class="image2">#5 Hunt for Treasure</h6>
             <p>In this challenge we went to interview MTN Agents about the factors that influenced their earnings.</p>
           </div>
         </div>
@@ -462,8 +632,8 @@
          <div class="img_big">
          <img class="img-responsive" src="images/img/ch2.jpeg" alt="">
         </div>
-          <div class="portfolio-info"> <a class="preview" href="images/img/ch2.jpeg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></a>
-            <h6>#1  ALUxpress</h6>
+          <div class="portfolio-info"> <button style="background:none;border: 0;" class="preview image" value="images/img/ch2.jpeg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></button>
+            <h6 class="image2">#1  ALUxpress</h6>
             <p>In this challenge we did a scavenger hunt trying to find different locations around campus</p>
           </div>
         </div>
@@ -473,8 +643,8 @@
          <div class="img_big">
          <img class="img-responsive" src="images/img/help3.jpg" alt="">
         </div>
-          <div class="portfolio-info"> <a class="preview" href="images/img/help3.jpg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></a>
-            <h6>CH-1 Helping</h6>
+          <div class="portfolio-info"> <button style="background:none;border: 0;" class="preview image" value="images/img/help3.jpg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></button>
+            <h6 class="image2">CH-1 Helping</h6>
             <p>In This Challenge We Cleaned The City</p>
           </div>
         </div>
@@ -484,8 +654,8 @@
          <div class="img_big">
          <img class="img-responsive" src="images/img/ch3.jpeg" alt="">
         </div>
-          <div class="portfolio-info"> <a class="preview" href="images/img/ch3.jpeg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></a>
-            <h6>#1  ALUxpress</h6>
+          <div class="portfolio-info"> <button style="background:none;border: 0;" class="preview image" value="images/img/ch3.jpeg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></button>
+            <h6 class="image2">#1  ALUxpress</h6>
             <p>In this challenge we did a scavenger hunt trying to find different locations around campus</p>
           </div>
         </div>
@@ -495,8 +665,8 @@
          <div class="img_big">
          <img class="img-responsive" src="images/img/ch4.jpeg" alt="">
         </div>
-          <div class="portfolio-info"> <a class="preview" href="images/img/ch4.jpeg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></a>
-            <h6>#1  ALUxpress</h6>
+          <div class="portfolio-info"> <button style="background:none;border: 0;" class="preview image" value="images/img/ch4.jpeg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></button>
+            <h6 class="image2">#1  ALUxpress</h6>
             <p>In this challenge we did a scavenger hunt trying to find different locations around campus</p>
           </div>
         </div>
@@ -506,8 +676,8 @@
          <div class="img_big">
          <img class="img-responsive" src="images/img/ch5.jpeg" alt="">
         </div>
-          <div class="portfolio-info"> <a class="preview" href="images/img/ch5.jpeg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></a>
-            <h6>#1  ALUxpress</h6>
+          <div class="portfolio-info"> <button style="background:none;border: 0;" class="preview image" value="images/img/ch5.jpeg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></button>
+            <h6 class="image2">#1  ALUxpress</h6>
             <p>In this challenge we did a scavenger hunt trying to find different locations around campus</p>
           </div>
         </div>
@@ -517,8 +687,8 @@
          <div class="img_big">
          <img class="img-responsive" src="images/img/ch6.jpeg" alt="">
         </div>
-          <div class="portfolio-info"> <a class="preview" href="images/img/ch6.jpeg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></a>
-            <h6>#1  ALUxpress</h6>
+          <div class="portfolio-info"> <button style="background:none;border: 0;" class="preview image" value="images/img/ch6.jpeg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></button>
+            <h6 class="image2">#1  ALUxpress</h6>
             <p>In this challenge we did a scavenger hunt trying to find different locations around campus</p>
           </div>
         </div>
@@ -528,8 +698,8 @@
          <div class="img_big">
          <img class="img-responsive" src="images/img/ch7.jpeg" alt="">
         </div>
-          <div class="portfolio-info"> <a class="preview" href="images/img/ch7.jpeg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></a>
-            <h6>#1  ALUxpress</h6>
+          <div class="portfolio-info"> <button style="background:none;border: 0;" class="preview image" value="images/img/ch7.jpeg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></button>
+            <h6 class="image2">#1  ALUxpress</h6>
             <p>In this challenge we did a scavenger hunt trying to find different locations around campus</p>
           </div>
         </div>
@@ -539,8 +709,8 @@
          <div class="img_big">
          <img class="img-responsive" src="images/img/ch8.jpeg" alt="">
         </div>
-          <div class="portfolio-info"> <a class="preview" href="images/img/ch8.jpeg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></a>
-            <h6>#1  ALUxpress</h6>
+          <div class="portfolio-info"> <button style="background:none;border: 0;" class="preview image" value="images/img/ch8.jpeg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></button>
+            <h6 class="image2">#1  ALUxpress</h6>
             <p>In this challenge we did a scavenger hunt trying to find different locations around campus</p>
           </div>
         </div>
@@ -550,8 +720,8 @@
          <div class="img_big">
          <img class="img-responsive" src="images/img/ch9.jpeg" alt="">
         </div>
-          <div class="portfolio-info"> <a class="preview" href="images/img/ch9.jpeg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></a>
-            <h6>#1  ALUxpress</h6>
+          <div class="portfolio-info"> <button style="background:none;border: 0;" class="preview image" value="images/img/ch9.jpeg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></button>
+            <h6 class="image2">#1  ALUxpress</h6>
             <p>In this challenge we did a scavenger hunt trying to find different locations around campus</p>
           </div>
         </div>
@@ -561,8 +731,8 @@
          <div class="img_big">
          <img class="img-responsive" src="images/img/ch10.jpeg" alt="">
         </div>
-          <div class="portfolio-info"> <a class="preview" href="images/img/ch10.jpeg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></a>
-            <h6>#1  ALUxpress</h6>
+          <div class="portfolio-info"> <button style="background:none;border: 0;" class="preview image" value="images/img/ch10.jpeg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></button>
+            <h6 class="image2">#1  ALUxpress</h6>
             <p>In this challenge we did a scavenger hunt trying to find different locations around campus</p>
           </div>
         </div>
@@ -572,8 +742,8 @@
          <div class="img_big">
          <img class="img-responsive" src="images/img/ch11.jpeg" alt="">
         </div>
-          <div class="portfolio-info"> <a class="preview" href="images/img/ch11.jpeg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></a>
-            <h6>#1  ALUxpress</h6>
+          <div class="portfolio-info"> <button style="background:none;border: 0;" class="preview image" value="images/img/ch11.jpeg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></button>
+            <h6 class="image2">#1  ALUxpress</h6>
             <p>In this challenge we did a scavenger hunt trying to find different locations around campus</p>
           </div>
         </div>
@@ -583,8 +753,8 @@
          <div class="img_big">
          <img class="img-responsive" src="images/img/ch12.jpeg" alt="">
         </div>
-          <div class="portfolio-info"> <a class="preview" href="images/img/ch12.jpeg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></a>
-            <h6>#1  ALUxpress</h6>
+          <div class="portfolio-info"> <button style="background:none;border: 0;" class="preview image" value="images/img/ch12.jpeg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></button>
+            <h6 class="image2">#1  ALUxpress</h6>
             <p>In this challenge we did a scavenger hunt trying to find different locations around campus</p>
           </div>
         </div>
@@ -594,8 +764,8 @@
          <div class="img_big">
          <img class="img-responsive" src="images/img/ch13.jpeg" alt="">
         </div>
-          <div class="portfolio-info"> <a class="preview" href="images/img/ch13.jpeg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></a>
-            <h6>#1  ALUxpress</h6>
+          <div class="portfolio-info"> <button style="background:none;border: 0;" class="preview image" value="images/img/ch13.jpeg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></button>
+            <h6 class="image2">#1  ALUxpress</h6>
             <p>In this challenge we did a scavenger hunt trying to find different locations around campus</p>
           </div>
         </div>
@@ -605,8 +775,8 @@
          <div class="img_big">
          <img class="img-responsive" src="images/img/ch14.jpeg" alt="">
         </div>
-          <div class="portfolio-info"> <a class="preview" href="images/img/ch14.jpeg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></a>
-            <h6>#1  ALUxpress</h6>
+          <div class="portfolio-info"> <button style="background:none;border: 0;" class="preview image" value="images/img/ch14.jpeg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></button>
+            <h6 class="image2">#1  ALUxpress</h6>
             <p>In this challenge we did a scavenger hunt trying to find different locations around campus</p>
           </div>
         </div>
@@ -616,8 +786,8 @@
          <div class="img_big">
          <img class="img-responsive" src="images/img/ch15.jpeg" alt="">
         </div>
-          <div class="portfolio-info"> <a class="preview" href="images/img/ch15.jpeg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></a>
-            <h6>#1  ALUxpress</h6>
+          <div class="portfolio-info"> <button style="background:none;border: 0;" class="preview image" value="images/img/ch15.jpeg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></button>
+            <h6 class="image2">#1  ALUxpress</h6>
             <p>In this challenge we did a scavenger hunt trying to find different locations around campus</p>
           </div>
         </div>
@@ -627,8 +797,8 @@
          <div class="img_big">
          <img class="img-responsive" src="images/img/help4.jpg" alt="">
         </div>
-          <div class="portfolio-info"> <a class="preview" href="images/img/help4.jpg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></a>
-            <h6>CH-1 Helping</h6>
+          <div class="portfolio-info"> <button style="background:none;border: 0;" class="preview image" value="images/img/help4.jpg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></button>
+            <h6 class="image2">CH-1 Helping</h6>
             <p>In This Challenge We Cleaned The City</p>
           </div>
         </div>
@@ -638,8 +808,8 @@
          <div class="img_big">
          <img class="img-responsive" src="images/img/help5.jpg" alt="">
         </div>
-          <div class="portfolio-info"> <a class="preview" href="images/img/help5.jpg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></a>
-            <h6>CH-1 Helping</h6>
+          <div class="portfolio-info"> <button style="background:none;border: 0;" class="preview image" value="images/img/help5.jpg" data-rel="prettyPhoto"><i class="fa fa-eye"></i></button>
+            <h6 class="image2">CH-1 Helping</h6>
             <p>In This Challenge We Cleaned The City</p>
           </div>
         </div>
@@ -651,8 +821,8 @@
          <div class="img_big">
          <img class="img-responsive" src="images/img/oth1.jpg" alt="">
         </div>
-          <div class="portfolio-info"> <a class="preview" href="images/img/oth1.jpg" data-rel="prettyPhoto"><i class="fa fa-plus-circle"></i></a>
-            <h6>Life At ALU</h6>
+          <div class="portfolio-info"> <button style="background:none;border: 0;" class="preview image" value="images/img/oth1.jpg" data-rel="prettyPhoto"><i class="fa fa-plus-circle"></i></button>
+            <h6 class="image2">Life At ALU</h6>
             <p>Unit is power</p>
           </div>
         </div>
@@ -663,8 +833,8 @@
          <div class="img_big">
          <img class="img-responsive" src="images/img/oth2.jpg" alt="">
         </div>
-          <div class="portfolio-info"> <a class="preview" href="images/img/oth2.jpg" data-rel="prettyPhoto"><i class="fa fa-plus-circle"></i></a>
-            <h6>Life At ALU</h6>
+          <div class="portfolio-info"> <button style="background:none;border: 0;" class="preview image" value="images/img/oth2.jpg" data-rel="prettyPhoto"><i class="fa fa-plus-circle"></i></button>
+            <h6 class="image2">Life At ALU</h6>
             <p>Unit is power</p>
           </div>
         </div>
@@ -675,8 +845,8 @@
          <div class="img_big">
          <img class="img-responsive" src="images/img/oth3.jpg" alt="">
         </div>
-          <div class="portfolio-info"> <a class="preview" href="images/img/oth3.jpg" data-rel="prettyPhoto"><i class="fa fa-plus-circle"></i></a>
-            <h6>Life At ALU</h6>
+          <div class="portfolio-info"> <button style="background:none;border: 0;" class="preview image" value="images/img/oth3.jpg" data-rel="prettyPhoto"><i class="fa fa-plus-circle"></i></button>
+            <h6 class="image2">Life At ALU</h6>
             <p>Unit is power</p>
           </div>
         </div>
@@ -687,8 +857,8 @@
          <div class="img_big">
          <img class="img-responsive" src="images/img/oth4.jpg" alt="">
         </div>
-          <div class="portfolio-info"> <a class="preview" href="images/img/oth4.jpg" data-rel="prettyPhoto"><i class="fa fa-plus-circle"></i></a>
-            <h6>Life At ALU</h6>
+          <div class="portfolio-info"> <button style="background:none;border: 0;" class="preview image" value="images/img/oth4.jpg" data-rel="prettyPhoto"><i class="fa fa-plus-circle"></i></button>
+            <h6 class="image2">Life At ALU</h6>
             <p>Unit is power</p>
           </div>
         </div>
@@ -699,8 +869,8 @@
          <div class="img_big">
          <img class="img-responsive" src="images/img/oth5.jpg" alt="">
         </div>
-          <div class="portfolio-info"> <a class="preview" href="images/img/oth5.jpg" data-rel="prettyPhoto"><i class="fa fa-plus-circle"></i></a>
-            <h6>Life At ALU</h6>
+          <div class="portfolio-info"> <button style="background:none;border: 0;" class="preview image" value="images/img/oth5.jpg" data-rel="prettyPhoto"><i class="fa fa-plus-circle"></i></button>
+            <h6 class="image2">Life At ALU</h6>
             <p>Unit is power</p>
           </div>
         </div>
@@ -712,8 +882,8 @@
          <div class="img_big">
          <img class="img-responsive" src="images/img/oth6.jpg" alt="">
         </div>
-          <div class="portfolio-info"> <a class="preview" href="images/img/oth6.jpg" data-rel="prettyPhoto"><i class="fa fa-plus-circle"></i></a>
-            <h6>Life At ALU</h6>
+          <div class="portfolio-info"> <button style="background:none;border: 0;" class="preview image" value="images/img/oth6.jpg" data-rel="prettyPhoto"><i class="fa fa-plus-circle"></i></button>
+            <h6 class="image2">Life At ALU</h6>
             <p>Unit is power</p>
           </div>
         </div>
@@ -724,8 +894,8 @@
          <div class="img_big">
          <img class="img-responsive" src="images/img/oth7.jpg" alt="">
         </div>
-          <div class="portfolio-info"> <a class="preview" href="images/img/oth7.jpg" data-rel="prettyPhoto"><i class="fa fa-plus-circle"></i></a>
-            <h6>Life At ALU</h6>
+          <div class="portfolio-info"> <button style="background:none;border: 0;" class="preview image" value="images/img/oth7.jpg" data-rel="prettyPhoto"><i class="fa fa-plus-circle"></i></button>
+            <h6 class="image2">Life At ALU</h6>
             <p>Unit is power</p>
           </div>
         </div>
@@ -736,8 +906,8 @@
          <div class="img_big">
          <img class="img-responsive" src="images/img/oth8.jpg" alt="">
         </div>
-          <div class="portfolio-info"> <a class="preview" href="images/img/oth8.jpg" data-rel="prettyPhoto"><i class="fa fa-plus-circle"></i></a>
-            <h6>Life At ALU</h6>
+          <div class="portfolio-info"> <button style="background:none;border: 0;" class="preview image" value="images/img/oth8.jpg" data-rel="prettyPhoto"><i class="fa fa-plus-circle"></i></button>
+            <h6 class="image2">Life At ALU</h6>
             <p>Unit is power</p>
           </div>
         </div>
@@ -748,8 +918,8 @@
          <div class="img_big">
          <img class="img-responsive" src="images/img/oth9.jpg" alt="">
         </div>
-          <div class="portfolio-info"> <a class="preview" href="images/img/oth9.jpg" data-rel="prettyPhoto"><i class="fa fa-plus-circle"></i></a>
-            <h6>Life At ALU</h6>
+          <div class="portfolio-info"> <button style="background:none;border: 0;" class="preview image" value="images/img/oth9.jpg" data-rel="prettyPhoto"><i class="fa fa-plus-circle"></i></button>
+            <h6 class="image2">Life At ALU</h6>
             <p>Unit is power</p>
           </div>
         </div>
@@ -789,7 +959,7 @@
             The challenge presented a compelling narrative of Prince Louis Rwagasore, an inspiring African leader, as he embarked on a transformative journey, showcasing his resilience and visionary leadership. Through the lens of his community, the tale highlighted his courageous pursuit of a better future, leaving an enduring legacy that continues to inspire and resonate globally.
           </p>
         </div>
-        <div class="col-md-6 tab-img"><iframe  width="560" height="315" src="https://www.youtube.com/embed/C-s3uj8D00U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+        <div class="col-md-6 tab-img"><iframe src="https://www.youtube.com/embed/C-s3uj8D00U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
       </div>
       <div role="tabpanel" class="tab-pane fade feat-sec" id="tab-2">
         <div class="col-md-6 tab">
@@ -819,7 +989,7 @@
           In this challenge, participants delivered an impassioned elevator pitch demonstrating their commitment to addressing a specific issue. They aimed to create positive change through innovative and collaborative initiatives, tackling the problem at its core. By channeling their passion into action, they sought to inspire others and unite in solving the critical challenge, envisioning a brighter and more sustainable future for all.
         </p>
         </div>
-        <div class="col-md-6 tab-img"><iframe   width="560" height="315" src="https://www.youtube.com/embed/ZvdJjOxet_g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+        <div class="col-md-6 tab-img"><iframe  src="https://www.youtube.com/embed/ZvdJjOxet_g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
       </div>
       <div role="tabpanel" class="tab-pane fade feat-sec" id="tab-4">
         <div class="col-md-6 tab">
@@ -834,7 +1004,7 @@
           </p>
         </div>
         <div class="col-md-6 tab-img">
-          <iframe    width="560" height="315" src="https://www.youtube.com/embed/jYewUBtmGP8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          <iframe   src="https://www.youtube.com/embed/jYewUBtmGP8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
           </div>
       </div>
       <div role="tabpanel" class="tab-pane fade feat-sec" id="tab-5">
@@ -855,12 +1025,12 @@
 <!--Team-Section-Start-->
 <section id="team">
   <div class="container">
-    <div class="col-md-9 col-md-offset-2"style="width:100%;margin: auto;">
+    <div class="col-md-9 col-md-offset-2"style="width:100%;margin: auto; align-items: center;">
       <div class="heading">
         <h2>OUR <span>THINK TANK</span></h2>
     </div>
-    <div class="row" align="center" >
-      <div  style='width: 220px;margin: auto;  border: 0px solid red;' class="col-md-2 col-sm-6 col-xs-12 team-main-sec wow slideInUp" data-wow-duration="1s" data-wow-delay=".1s">
+    <div class="row" align="center" style="display: flex;flex-wrap: wrap;">
+      <div  style='width: 220px;margin:2px auto;  border: 0px solid red;' class="col-md-2 col-sm-6 col-xs-12 team-main-sec wow slideInUp" data-wow-duration="1s" data-wow-delay=".1s">
         <div class="team-sec">
           <div class="team-img"><div class="team-img2"> <img src="images/Team/micheal.jpeg" class="img-responsive" alt=""></div>
             <div class="team-desc">
@@ -920,6 +1090,71 @@
   </ul>
   <p> &copy; Copyright 2023 Evolvers </p>
 </footer>
+<script type="text/javascript">
+  //for pop
+  const images = [...document.querySelectorAll('.image')];
+  const images2 = [...document.querySelectorAll('.image2')];
+
+// popup
+
+const popup = document.querySelector('.popup');
+const closeBtn = document.querySelector('.close-btn');
+const imageName = document.querySelector('.image-name');
+const largeImage = document.querySelector('.large-image');
+const imageIndex = document.querySelector('.index');
+const leftArrow = document.querySelector('.left-arrow');
+const rightArrow = document.querySelector('.right-arrow');
+
+let index = 0; // will track our current image;
+
+images.forEach((item, i) => {
+    item.addEventListener('click', () => {
+        updateImage(i);
+        popup.classList.toggle('active');
+    })
+})
+
+const updateImage = (i) => {
+let path='';
+let path2='';
+    images.forEach((item, j) => {
+        if(i==j){
+     path = item.value;
+        }else{
+        j++;
+        }
+})
+    images2.forEach((item2, j) => {
+        if(i==j){
+     path2 = item2.innerHTML;
+        }else{
+        j++;
+        }
+})
+
+
+    largeImage.src = path;
+    imageName.innerHTML = path2;
+    imageIndex.innerHTML = `${i+1}`;
+    index = i;
+}
+
+closeBtn.addEventListener('click', () => {
+    popup.classList.toggle('active');
+})
+
+leftArrow.addEventListener('click', () => {
+    if(index > 0){
+        updateImage(index - 1);
+    }
+})
+
+rightArrow.addEventListener('click', () => {
+    if(index < images.length - 1){
+        updateImage(index + 1);
+    }
+})
+</script>
 <!--Jquery-->
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <!--Boostrap-Jquery-->
@@ -943,6 +1178,4 @@
 </body>
 </html>
 
-<!-- Hosting24 Analytics Code -->
-<script type="text/javascript" src="http://stats.hosting24.com/count.php"></script>
-<!-- End Of Analytics Code -->
+
